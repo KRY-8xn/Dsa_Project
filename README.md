@@ -1,1 +1,7 @@
-# Dsa_Project
+# INTERROGATION ROOM AI
+
+## Interrogation Room AI is a single-player, multi-agent AI simulation in which the user adopts one of three legal roles — Interrogator, Suspect, or Defense Lawyer — and interacts with locally-hosted LLM agents in a live criminal interrogation. The technical foundation of the system is the CIDS scoring engine: a four-algorithm analytical pipeline that evaluates every conversational turn in real time to produce live, weighted scores that determine who is winning the interrogation and when a win condition fires.
+
+## Algorithm 1 (LIA) scans suspect speech for incriminating phrases across four severity levels, applying recency weighting. Algorithm 2 (CDE) detects logical contradictions in the suspect's statements across different turns, with severity scores ranging from minor inconsistencies to critical reversals that can end the session instantly. Algorithm 3 (TMD) applies exponential temporal decay so that recent exchanges carry greater scoring weight than older ones, creating genuine game momentum. Algorithm 4 (PRS) measures strategic phrase usage by both the interrogator and the defense, tracking separate skill and resistance tracks.
+
+## These four outputs are combined through weighted composite formulae into three role-specific scores. Win conditions use asymmetric logic: the interrogator wins on any one of four OR-gates, while the suspect must satisfy three simultaneous AND-conditions. Sessions are bounded by a 20-minute timer, a 15-round limit, and a stalemate detector, all of which can trigger a forced verdict through the Judge AI. The FastAPI backend exposes three REST endpoints that orchestrate agent responses, score computation, and session state management.
